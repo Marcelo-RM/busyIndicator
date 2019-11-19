@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="src/busyIndicator.js"></script>
+    <title>Busy Indicator</title>
+</head>
+<body>
+    <h1>Sample busy indicator</h1>
+    <h5>the busy indicator will be automatically displayed and hidden on this page</h5>
+
+    <script>
+        busyIndicator.open();
+        setInterval(() => {
+            busyIndicator.open();
+            setTimeout(() => {
+                busyIndicator.close();
+            }, 3000);
+        }, 6000);
+    </script>
+</body>
+</html>
