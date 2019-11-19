@@ -2,17 +2,29 @@
 // github.com/marcelo-rm
 
 // METHODS
-function open(){
-    var busy = document.getElementById("busy");
-    if(busy){
-        busy.style.display = 'flex';
-    } else {
-        document.getElementsByTagName("body")[0].append(busyContainer);
-    }
+/**
+ * 
+ * @param {Number} delay seconds to wait
+ */
+function open(delay){
+    var time = delay ? _convetTime(delay) : 0;
+    setTimeout(() => {
+        var busy = document.getElementById("busy");
+        if(busy){
+            busy.style.display = 'flex';
+        } else {
+            document.getElementsByTagName("body")[0].append(busyContainer);
+        }
+    }, time);
 }
 
 function close(){
     document.getElementById("busy").style.display = "none";
+}
+
+function _convetTime(nTime){
+    nTime = nTime ? nTime.match(/\d/g).join("") : 0;
+    return (nTime * 1000);
 }
 
 //STYLES
