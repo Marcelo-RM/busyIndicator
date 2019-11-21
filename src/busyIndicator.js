@@ -6,7 +6,7 @@
  * 
  * @param {Number} delay seconds to wait
  */
-function open(delay){
+function open(delay, color){
     var time = delay ? _convetTime(delay) : 0;
     setTimeout(() => {
         var busy = document.getElementById("busy");
@@ -15,6 +15,9 @@ function open(delay){
         } else {
             document.getElementsByTagName("body")[0].append(busyContainer);
         }
+
+        busyContainer.children[0].style.borderColor = color;
+        busyContainer.children[0].style.borderRightColor = 'transparent';
     }, time);
 }
 
@@ -74,7 +77,6 @@ var iconStyle = `
 //<i class="fas fa-circle-notch"></i>
 //HTML OBJECTS
 var icon = document.createElement("i");
-icon.class = "fas fa-circle-nortch";
 icon.style = iconStyle;
 
 var busyContainer = document.createElement("div");

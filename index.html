@@ -12,15 +12,15 @@
     <h5>the busy indicator will be automatically displayed and hidden on this page</h5>
 
     <script>
-        busyIndicator.open('2s');
-        /*
+        busyIndicator.open('2s', 'green');
+        
         setInterval(() => {
-            busyIndicator.open();
+            busyIndicator.open('0', 'blue');
             setTimeout(() => {
                 busyIndicator.close();
             }, 3000);
         }, 6000);
-        */
+        
     </script>
 </body>
 </html>
