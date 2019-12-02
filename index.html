@@ -6,19 +6,47 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="src/busyIndicator.js"></script>
     <title>Busy Indicator</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+    </style>
 </head>
 <body>
     <h1>Sample busy indicator</h1>
     <h5>the busy indicator will be automatically displayed and hidden on this page</h5>
 
     <script>
-        busyIndicator.open('2s', 'green');
+        window.count = 0;
+        window.colors = [
+            '#820B8A',
+            '#731DD8',
+            '#FE820B',
+            '#001F54',
+            '#EF0000',
+            '#669628',
+            '#080500',
+            '#4DB2EC',
+            '#D11149',
+            '#FE5F00'
+        ];
         
         setInterval(() => {
-            busyIndicator.open('0', 'blue');
+            var index = Math.floor(Math.random() * 10);
+            var color = window.colors[index];
+
+            if(window.count % 2 == 0){
+                busyIndicator.open('0', color);
+            } else {
+                busyIndicator.open('0', color, 'bubble');
+            }
+
             setTimeout(() => {
                 busyIndicator.close();
-            }, 3000);
+            }, 4000);
+
+            count++;
+
         }, 6000);
         
     </script>
