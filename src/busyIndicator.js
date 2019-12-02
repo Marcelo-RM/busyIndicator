@@ -9,8 +9,9 @@
 function open(delay, color, type){
     var type = type ? type : "busy";
     var time = delay ? _convetTime(delay) : 0;
+    var color = color ? color : 'black';
 
-    setTimeout(() => {
+    setTimeout(function() {
         var busy = document.getElementById(type);
         
         if(type == "bubble"){
@@ -39,7 +40,7 @@ function close(){
     var itens = document.getElementsByClassName("busy");
     itens = Array.from(itens);
 
-    itens.forEach(e => {
+    itens.forEach(function(e) {
         e.style.display = "none";
     });
 }
@@ -52,63 +53,80 @@ function _convetTime(nTime){
 //STYLES
 var style = document.createElement('style');
 style.type = 'text/css';
-var keyFrames = '\
-@-webkit-keyframes busy {\
-    100% {\
-        transform: rotateZ(360deg);\
-    }\
-} \
-@-moz-keyframes busy {\
-    100% {\
-        transform: rotateZ(360deg);\
-    }\
-} \
-@keyframes pop {\
-    0% {\
-        width: 10px;\
-        height: 10px;\
-        opacity: 1; \
-    }\
-    50% {\
-        width: 25px;\
-        height: 25px;\
-        opacity: 0.3;\
-    }\
-    100% {\
-        width: 10px;\
-        height: 10px;\
-        opacity: 1;\
-    }\
-}';
+var keyFrames = "" +
+"@-webkit-keyframes busy {" +
+    "100% {" +
+        "transform: rotateZ(360deg);" +
+    "}" +
+"} " +
+"@-moz-keyframes busy {" +
+    "100% {" +
+        "transform: rotateZ(360deg);" +
+    "}" +
+"} " +
+"@-webkit-keyframes bubble {" +
+    "0% {" +
+        "width: 10px;" +
+        "height: 10px;" +
+        "opacity: 1; " +
+    "}" +
+    "50% {" +
+        "width: 25px;" +
+        "height: 25px;" +
+        "opacity: 0.3;" +
+    "}" +
+    "100% {" +
+        "width: 10px;" +
+        "height: 10px;" +
+        "opacity: 1;" +
+    "}" +
+"} " +
+"@-moz-keyframes bubble {" +
+    "0% {" +
+        "width: 10px;" +
+        "height: 10px;" +
+        "opacity: 1; " +
+    "}" +
+    "50% {" +
+        "width: 25px;" +
+        "height: 25px;" +
+        "opacity: 0.3;" +
+    "}" +
+    "100% {" +
+        "width: 10px;" +
+        "height: 10px;" +
+        "opacity: 1;" +
+    "}" +
+"}";
 style.innerHTML = keyFrames;
 document.getElementsByTagName('head')[0].appendChild(style);
 
-var busyStyle = `
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    margin: 0px;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.2);
-    font-size: 5rem;
-    color: blue;
-`;
-var iconStyle = `
-    width: 80px;
-    height: 80px;
-    animation: busy 1.5s linear infinite;
-    margin: 0;
-    border: 6px solid #1d262d;
-    border-right-color: transparent;
-    border-radius: 100%;
-    vertical-align: middle;
-`;
+var busyStyle = "" +
+    "z-index: 1000;" +
+    "display: flex;" +
+    "justify-content: center;" +
+    "text-align: center;" +
+    "align-items: center;" +
+    "position: fixed;" +
+    "left: 0px;" +
+    "top: 0px;" +
+    "margin: 0px;" +
+    "width: 100vw;" +
+    "height: 100vh;" +
+    "background-color: rgba(0, 0, 0, 0.2);" +
+    "font-size: 5rem;" +
+    "color: blue;"
+;
+var iconStyle = "" +
+    "width: 80px;" +
+    "height: 80px;" +
+    "animation: busy 1.5s linear infinite;" +
+    "margin: 0;" +
+    "border: 6px solid #1d262d;" +
+    "border-right-color: transparent;" +
+    "border-radius: 100%;" +
+    "vertical-align: middle;"
+;
 
 //  STYLES PARA BUSY DE CIRCULOS
 var busyRoundedStyle = "\
@@ -127,21 +145,21 @@ var busyRoundedStyle = "\
     align-items: center;\
 }\
 .bubbles01 {\
-    background-color: rgb(76, 0, 130);\
+    background-color: black;\
     margin-left: -30px;\
     position: absolute;\
     border-radius: 50%;\
-    animation-name: pop;\
+    animation-name: bubble;\
     animation-duration: 1.5s;\
     animation-delay: 0.1s;\
     animation-iteration-count: infinite;\
     animation-timing-function: ease-out;\
 }\
 .bubbles02 {\
-    background-color: rgb(76, 0, 130);\
+    background-color: black;\
     position: absolute;\
     border-radius: 50%;\
-    animation-name: pop;\
+    animation-name: bubble;\
     animation-duration: 1.5s;\
     animation-delay: 0.4s;\
     animation-iteration-count: infinite;\
@@ -149,10 +167,10 @@ var busyRoundedStyle = "\
 }\
 .bubbles03 {\
     margin-left: 30px;\
-    background-color: rgb(76, 0, 130);\
+    background-color: black;\
     position: absolute;\
     border-radius: 50%;\
-    animation-name: pop;\
+    animation-name: bubble;\
     animation-duration: 1.5s;\
     animation-delay: 0.6s;\
     animation-iteration-count: infinite;\
@@ -164,8 +182,11 @@ styleBubble.type = 'text/css';
 styleBubble.innerHTML = busyRoundedStyle;
 document.getElementsByTagName('head')[0].appendChild(styleBubble);
 
-//<i class="fas fa-circle-notch"></i>
-//HTML OBJECTS
+/*
+############################################################
+#      BUSY CIRCLE INDICATOR                               #
+############################################################
+*/
 var icon = document.createElement("i");
 icon.style = iconStyle;
 
@@ -175,6 +196,11 @@ busyContainer.appendChild(icon);
 busyContainer.id = "busy";
 busyContainer.classList.add("busy");
 
+/*
+############################################################
+#      BUSY BUBBLE INDICATOR                               #
+############################################################
+*/
 var busyContainerBubble = document.createElement("div");
 busyContainerBubble.id = "bubble";
 busyContainerBubble.classList.add("busy");
@@ -191,7 +217,11 @@ var bubbles03 = document.createElement("div");
 bubbles03.classList.add("bubbles03");
 busyContainerBubble.appendChild(bubbles03);
 
-//MASTER OBJECT
+/*
+############################################################
+#      MASTER OBJECT TO EXPORTS                            #
+############################################################
+*/
 var busyIndicator = {
     open: open,
     close: close

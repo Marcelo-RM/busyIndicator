@@ -31,7 +31,7 @@
             '#FE5F00'
         ];
         
-        setInterval(() => {
+        setInterval(function() {
             var index = Math.floor(Math.random() * 10);
             var color = window.colors[index];
 
@@ -41,7 +41,7 @@
                 busyIndicator.open('0', color, 'bubble');
             }
 
-            setTimeout(() => {
+            setTimeout(function() {
                 busyIndicator.close();
             }, 4000);
 
