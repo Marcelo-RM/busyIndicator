@@ -8,12 +8,22 @@
  */
 function open(delay, color, type){
     var type = type ? type : "busy";
+        type = type == "circle" ? "busy" : type;
     var time = delay ? _convetTime(delay) : 0;
     var color = color ? color : 'black';
 
     setTimeout(function() {
         var busy = document.getElementById(type);
         
+        if(type == "busy") {
+            if(busy){
+                busy.style.display = 'flex';
+            } else {
+                document.getElementsByTagName("body")[0].append(busyContainer);
+            }
+            busyContainer.children[0].style.borderColor = color;
+            busyContainer.children[0].style.borderRightColor = 'transparent';
+        }
         if(type == "bubble"){
             if(busy){
                 busy.style.display = 'flex';
@@ -24,14 +34,16 @@ function open(delay, color, type){
             document.getElementsByClassName("bubbles01")[0].style.backgroundColor = color;
             document.getElementsByClassName("bubbles02")[0].style.backgroundColor = color;
             document.getElementsByClassName("bubbles03")[0].style.backgroundColor = color;
-        } else {
+        } 
+        if(type == "bars") {
             if(busy){
                 busy.style.display = 'flex';
             } else {
-                document.getElementsByTagName("body")[0].append(busyContainer);
+                document.getElementsByTagName("body")[0].append(busyContainerBar);
             }
-            busyContainer.children[0].style.borderColor = color;
-            busyContainer.children[0].style.borderRightColor = 'transparent';
+            busyContainerBar.children[0].style.backgroundColor = color;
+            busyContainerBar.children[1].style.backgroundColor = color;
+            busyContainerBar.children[2].style.backgroundColor = color;
         }
     }, time);
 }
@@ -97,6 +109,28 @@ var keyFrames = "" +
         "height: 10px;" +
         "opacity: 1;" +
     "}" +
+"}" +
+"@-webkit-keyframes barResize {" +
+    "0% {" +
+        "height: 5px;" +
+    "}" +
+    "50% {" +
+        "height: 30px;" +
+    "}" +
+    "100% {" +
+        "height: 5px;" +
+    "}" +
+"} " +
+"@-moz-keyframes barResize {" +
+    "0% {" +
+        "height: 5px;" +
+    "}" +
+    "50% {" +
+        "height: 30px;" +
+    "}" +
+    "100% {" +
+        "height: 5px;" +
+    "}" +
 "}";
 style.innerHTML = keyFrames;
 document.getElementsByTagName('head')[0].appendChild(style);
@@ -118,8 +152,8 @@ var busyStyle = "" +
     "color: blue;"
 ;
 var iconStyle = "" +
-    "width: 80px;" +
-    "height: 80px;" +
+    "width: 60px;" +
+    "height: 60px;" +
     "animation: busy 1.5s linear infinite;" +
     "margin: 0;" +
     "border: 6px solid #1d262d;" +
@@ -128,58 +162,82 @@ var iconStyle = "" +
     "vertical-align: middle;"
 ;
 
-//  STYLES PARA BUSY DE CIRCULOS
-var busyRoundedStyle = "\
-.busy { \
-    z-index: 1000; \
-    position: fixed; \
-    left: 0px; \
-    top: 0px; \
-    margin: 0px; \
-    width: 100vw; \
-    height: 100vh; \
-    background-color: rgba(0, 0, 0, 0.2);\
-    font-size: 5rem;\
-    display: flex;\
-    justify-content: center;\
-    align-items: center;\
-}\
-.bubbles01 {\
-    background-color: black;\
-    margin-left: -30px;\
-    position: absolute;\
-    border-radius: 50%;\
-    animation-name: bubble;\
-    animation-duration: 1.5s;\
-    animation-delay: 0.1s;\
-    animation-iteration-count: infinite;\
-    animation-timing-function: ease-out;\
-}\
-.bubbles02 {\
-    background-color: black;\
-    position: absolute;\
-    border-radius: 50%;\
-    animation-name: bubble;\
-    animation-duration: 1.5s;\
-    animation-delay: 0.4s;\
-    animation-iteration-count: infinite;\
-    animation-timing-function: ease-out;\
-}\
-.bubbles03 {\
-    margin-left: 30px;\
-    background-color: black;\
-    position: absolute;\
-    border-radius: 50%;\
-    animation-name: bubble;\
-    animation-duration: 1.5s;\
-    animation-delay: 0.6s;\
-    animation-iteration-count: infinite;\
-    animation-timing-function: ease-out;\
-}";
+//  STYLES PARA TODOS OS INDICADORES
+var busyStyle = "" +
+".busy { " +
+    "z-index: 1000; " +
+    "position: fixed; " +
+    "left: 0px; " +
+    "top: 0px; " +
+    "margin: 0px; " +
+    "width: 100vw; " +
+    "height: 100vh; " +
+    "background-color: rgba(0, 0, 0, 0.2);" +
+    "font-size: 5rem;" +
+    "display: flex;" +
+    "justify-content: center;" +
+    "align-items: center;" +
+"}" +
+".bubbles01 {" +
+    "background-color: black;" +
+    "margin-left: -25px;" +
+    "position: absolute;" +
+    "border-radius: 50%;" +
+    "animation-name: bubble;" +
+    "animation-duration: 1.5s;" +
+    "animation-delay: 0.1s;" +
+    "animation-iteration-count: infinite;" +
+    "animation-timing-function: ease-out;" +
+"}" +
+".bubbles02 {" +
+    "background-color: black;" +
+    "position: absolute;" +
+    "border-radius: 50%;" +
+    "animation-name: bubble;" +
+    "animation-duration: 1.5s;" +
+    "animation-delay: 0.4s;" +
+    "animation-iteration-count: infinite;" +
+    "animation-timing-function: ease-out;" +
+"}" +
+".bubbles03 {" +
+    "margin-left: 25px;" +
+    "background-color: black;" +
+    "position: absolute;" +
+    "border-radius: 50%;" +
+    "animation-name: bubble;" +
+    "animation-duration: 1.5s;" +
+    "animation-delay: 0.6s;" +
+    "animation-iteration-count: infinite;" +
+    "animation-timing-function: ease-out;" +
+"}" +
+".bars {" +
+    "width: 10px;" +
+    "height: 5px;" +
+    "margin: 2px;" +
+    "background-color: orangered;" +
+    "animation-name: barResize;" +
+"}" +
+"#bar001 {" +
+    "animation-duration: 1.5s;" +
+    "animation-iteration-count: infinite;" +
+    "animation-timing-function: ease-out;" +
+"}" +
+"#bar002 {" +
+    "animation-duration: 1.5s;" +
+    "animation-delay: 0.4s;" +
+    "animation-iteration-count: infinite;" +
+    "animation-timing-function: ease-out;" +
+"}" +
+"#bar003 {" +
+    "animation-duration: 1.5s;" +
+    "animation-delay: 0.8s;" +
+    "animation-iteration-count: infinite;" +
+    "animation-timing-function: ease-out;" +
+"}";
 
 var styleBubble = document.createElement('style');
 styleBubble.type = 'text/css';
-styleBubble.innerHTML = busyRoundedStyle;
+styleBubble.innerHTML = busyStyle;
 document.getElementsByTagName('head')[0].appendChild(styleBubble);
 
 /*
@@ -216,6 +274,30 @@ busyContainerBubble.appendChild(bubbles02);
 var bubbles03 = document.createElement("div");
 bubbles03.classList.add("bubbles03");
 busyContainerBubble.appendChild(bubbles03);
+
+/*
+############################################################
+#      BUSY BARS INDICATOR                                 #
+############################################################
+*/
+var busyContainerBar = document.createElement("div");
+busyContainerBar.id = "bars";
+busyContainerBar.classList.add("busy");
+
+var bar01 = document.createElement("div");
+bar01.id = "bar001"
+bar01.classList.add("bars");
+busyContainerBar.appendChild(bar01);
+
+var bar02 = document.createElement("div");
+bar02.id = "bar002"
+bar02.classList.add("bars");
+busyContainerBar.appendChild(bar02);
+
+var bar03 = document.createElement("div");
+bar03.id = "bar003"
+bar03.classList.add("bars");
+busyContainerBar.appendChild(bar03);
 
 /*
 ############################################################

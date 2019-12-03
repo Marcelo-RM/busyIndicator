@@ -22,9 +22,10 @@ busyIndicator.open('2s', 'red');
 busyIndicator.open('2s', '#ff0000');
 busyIndicator.open('2s', 'rgb(255, 0, 0)');
 
-Atualmente há duas opções de indicadores, circulo e bolhas, que são escolhido pelo terceiro parametro. Opções possíveis são: "busy" para exibir o indicador padrão, circulo, e "bubble" para exibir o indicador de bolhas.
+Atualmente há duas opções de indicadores, circulo e bolhas, que são escolhido pelo terceiro parametro. Opções possíveis são: "busy" para exibir o indicador padrão, circulo, "bubble" para exibir o indicador de bolhas e "bars" para exibir o indicador em barras.
 Caso o terceiro parametro seja omitido o indicador vai assumir sua forma padrão.
 Ex.:
 busyIndicator.open('2s', 'red');             //circle busy
-busyIndicator.open('2s', 'red', 'busy');     //circle busy
+busyIndicator.open('2s', 'red', 'circle');   //circle busy
 busyIndicator.open('2s', 'red', 'bubble');   //bubble busy
+busyIndicator.open('2s', 'red', 'bars');     //Bars busy

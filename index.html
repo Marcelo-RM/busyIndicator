@@ -17,6 +17,7 @@
     <h5>the busy indicator will be automatically displayed and hidden on this page</h5>
 
     <script>
+        'use strict';
         window.count = 0;
         window.colors = [
             '#820B8A',
@@ -29,23 +30,28 @@
             '#4DB2EC',
             '#D11149',
             '#FE5F00'
-        ];
+        ];        
+
         
         setInterval(function() {
             var index = Math.floor(Math.random() * 10);
             var color = window.colors[index];
 
-            if(window.count % 2 == 0){
-                busyIndicator.open('0', color);
-            } else {
+            if(window.count % 3 == 0){
+                busyIndicator.open('0', color, 'circle');
+            }
+            if(window.count % 3 == 1) {
                 busyIndicator.open('0', color, 'bubble');
+            }
+            if(window.count % 3 == 2) {
+                busyIndicator.open('0', color, 'bars');
             }
 
             setTimeout(function() {
                 busyIndicator.close();
             }, 4000);
 
-            count++;
+            window.count++;
 
         }, 6000);
         
