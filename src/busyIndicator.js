@@ -218,19 +218,19 @@ var busyStyle = "" +
     "animation-name: barResize;" +
 "}" +
 "#bar001 {" +
-    "animation-duration: 1.5s;" +
+    "animation-duration: 1s;" +
     "animation-iteration-count: infinite;" +
     "animation-timing-function: ease-out;" +
 "}" +
 "#bar002 {" +
-    "animation-duration: 1.5s;" +
-    "animation-delay: 0.4s;" +
+    "animation-duration: 1s;" +
+    "animation-delay: 0.3s;" +
     "animation-iteration-count: infinite;" +
     "animation-timing-function: ease-out;" +
 "}" +
 "#bar003 {" +
-    "animation-duration: 1.5s;" +
-    "animation-delay: 0.8s;" +
+    "animation-duration: 1s;" +
+    "animation-delay: 0.5s;" +
     "animation-iteration-count: infinite;" +
     "animation-timing-function: ease-out;" +
 "}";
