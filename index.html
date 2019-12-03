@@ -30,33 +30,28 @@
             '#4DB2EC',
             '#D11149',
             '#FE5F00'
-        ];        
-
-        busyIndicator.open('0', 'orangered', 'bars');
+        ];
         
-        /*
-        setInterval(function() {
+        function showBusy(){
+            busyIndicator.close();
+
             var index = Math.floor(Math.random() * 10);
             var color = window.colors[index];
+            busyIndicator.open('0', color, 'circle');
 
-            if(window.count % 3 == 0){
-                busyIndicator.open('0', color, 'circle');
-            }
-            if(window.count % 3 == 1) {
-                busyIndicator.open('0', color, 'bubble');
-            }
-            if(window.count % 3 == 2) {
-                busyIndicator.open('0', color, 'bars');
-            }
-
-            setTimeout(function() {
+            setTimeout(function(){
                 busyIndicator.close();
-            }, 4000);
 
-            window.count++;
-
-        }, 6000);
-        */
+                busyIndicator.open('0', color, 'bubble');
+                setTimeout(function(){
+                    busyIndicator.close();
+                    
+                    busyIndicator.open('0', color, 'bars');
+                    setTimeout(showBusy, 5000);
+                }, 5000)
+            }, 5000)
+        }
+        showBusy();
         
     </script>
 </body>
