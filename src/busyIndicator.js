@@ -113,23 +113,29 @@ var keyFrames = "" +
 "@-webkit-keyframes barResize {" +
     "0% {" +
         "height: 5px;" +
+        "opacity: 0.2" +
     "}" +
     "50% {" +
         "height: 30px;" +
+        "opacity: 1" +
     "}" +
     "100% {" +
         "height: 5px;" +
+        "opacity: 0.2" +
     "}" +
 "} " +
 "@-moz-keyframes barResize {" +
     "0% {" +
         "height: 5px;" +
+        "opacity: 0.2" +
     "}" +
     "50% {" +
         "height: 30px;" +
+        "opacity: 1" +
     "}" +
     "100% {" +
         "height: 5px;" +
+        "opacity: 0.2" +
     "}" +
 "}";
 style.innerHTML = keyFrames;
