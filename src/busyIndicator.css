@@ -63,36 +63,36 @@
     width: 10px;
     height: 5px;
     margin: 2px;
+    opacity: 0.2;
     background-color: orangered;
     animation-name: barResize;
 }
 
 #bar001 {
-    animation-duration: 1s;
+    animation-duration: 1.3s;
     animation-iteration-count: infinite;
-    animation-timing-function: ease-out;
+    animation-timing-function: ease-in;
 }
 
 #bar002 {
-    animation-duration: 1s;
+    animation-duration: 1.3s;
     animation-delay: 0.3s;
     animation-iteration-count: infinite;
-    animation-timing-function: ease-out;
+    animation-timing-function: ease-in;
 }
 
 #bar003 {
-    animation-duration: 1s;
+    animation-duration: 1.3s;
     animation-delay: 0.5s;
     animation-iteration-count: infinite;
-    animation-timing-function: ease-out;
+    animation-timing-function: ease-in;
 }
 
 /*
 #############################################
-#  ANIMAÇÕES                                #
+#  ANIMAÇÕES - Circulo                      #
 #############################################
 */
-
 @keyframes busy {
     100% {
         transform: rotateZ(360deg);
@@ -111,6 +111,11 @@
     }
 }
 
+/*
+#############################################
+#  ANIMAÇÕES - Bolha                        #
+#############################################
+*/
 @keyframes bubble {
     0% {
         width: 10px;
@@ -165,16 +170,22 @@
     }
 }
 
+/*
+#############################################
+#  ANIMAÇÕES - Barra                        #
+#############################################
+*/
+
 @keyframes barResize {
     0% {
         height: 5px;
         opacity: 0.2
     }
-    50% {
+    40% {
         height: 30px;
         opacity: 1
     }
-    100% {
+    80% {
         height: 5px;
         opacity: 0.2
     }
@@ -185,11 +196,11 @@
         height: 5px;
         opacity: 0.2
     }
-    50% {
+    40% {
         height: 30px;
         opacity: 1
     }
-    100% {
+    80% {
         height: 5px;
         opacity: 0.2
     }
@@ -200,11 +211,11 @@
         height: 5px;
         opacity: 0.2
     }
-    50% {
+    40% {
         height: 30px;
         opacity: 1
     }
-    100% {
+    80% {
         height: 5px;
         opacity: 0.2
     }
