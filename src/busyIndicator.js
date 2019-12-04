@@ -6,7 +6,7 @@
  * 
  * @param {Number} delay seconds to wait
  */
-function open(delay, color, type){
+function open(color, type, delay){
     var tipo = !type ? "busy" : type;
     var time = delay ? _convetTime(delay) : 0;
     var cor  = color ? color : 'black';
@@ -57,7 +57,7 @@ function close(){
 }
 
 function _convetTime(nTime){
-    nTime = nTime ? nTime.match(/\d/g).join("") : 0;
+    nTime = nTime ? nTime : 0;
     return (nTime * 1000);
 }
 

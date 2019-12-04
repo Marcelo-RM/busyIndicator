@@ -38,16 +38,16 @@
 
             var index = Math.floor(Math.random() * 10);
             var color = window.colors[index];
-            busyIndicator.open('0', color, 'circle');
+            busyIndicator.open(color, 'circle');
 
             setTimeout(function(){
                 busyIndicator.close();
 
-                busyIndicator.open('0', color, 'bubble');
+                busyIndicator.open(color, 'bubble');
                 setTimeout(function(){
                     busyIndicator.close();
                     
-                    busyIndicator.open('0', color, 'bars');
+                    busyIndicator.open(color, 'bars');
                     setTimeout(showBusy, 5000);
                 }, 5000)
             }, 5000)
